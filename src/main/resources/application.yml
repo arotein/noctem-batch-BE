@@ -1,0 +1,13 @@
+spring:
+  batch.job.enabled: false
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_SERVER}:3306/user?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    username: ${NOCTEM_DB_READ_ONLY_USERNAME}
+    password: ${NOCTEM_DB_READ_ONLY_PASSWORD}
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+  redis:
+    host: ${REDIS_SERVER}
+    port: 6379
