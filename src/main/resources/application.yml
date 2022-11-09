@@ -2,14 +2,18 @@ server:
   shutdown: graceful
 
 spring:
+  profiles:
+    active: ${PROFILE}
   batch:
     job.enabled: false
     jdbc.initialize-schema: never # metadata table 자동생성 방지 => schema-mysql.sql을 통해 수동으로 생성함. 앞에 'use DB명;'먼저 붙이고 sql 복붙해서 실행
+  # DB 1개일 때 설정
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${MYSQL_SERVER}:3306/purchase?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    url: jdbc:mysql://mysqldb:3306/purchase?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
     username: ${NOCTEM_DB_USERNAME}
     password: ${NOCTEM_DB_PASSWORD}
+
   jpa:
     properties:
       hibernate:
@@ -19,5 +23,5 @@ spring:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate.ddl-auto: validate
   redis:
-    host: ${REDIS_SERVER}
+    host: redis
     port: 6379
